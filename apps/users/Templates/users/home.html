@@ -1,2 +1,14 @@
 <p> welcome home </p>
 <p> {{ user.username }} </p>
+
+
+
+{% if products %}
+    <ul>
+        {% for product in products %}
+            <li>{{ product.name }} - {{ product.price }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No products available.</p>
+{% endif %}

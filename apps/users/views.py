@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as auth_login
 from .forms import RegisterForm, LoginForm
 from .models import User
+from apps.products.models import Product
 
 # Create your views here.
 def register(request):
@@ -33,6 +34,7 @@ def login(request):
 
 def home(request):
     user = request.user
+    products = Product.objects.all()
     if not user.is_authenticated:
         return render(request, 'login.html')
-    return render(request, 'users/home.html')
+    return render(request, 'users/home.html', {'user': user, 'products': products})
